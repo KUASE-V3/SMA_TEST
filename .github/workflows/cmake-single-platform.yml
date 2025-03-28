@@ -44,3 +44,9 @@ jobs:
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
 
+# https://github.com/marketplace/actions/discord-message-notify
+    - name: send custom message
+        uses: appleboy/discord-action@v1.2.0
+        with:
+          webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
+          message: The ${{ github.event_name }} event triggered first step.
