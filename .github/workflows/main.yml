@@ -4,7 +4,7 @@ on:
 jobs:
   test_job:
     name: Node Information
-    runs-on: sslab-kuase
+    runs-on: self-hosted
     steps:
       - name: check the node version
         run: cat /etc/issue && uname -a
