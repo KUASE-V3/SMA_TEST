@@ -2,7 +2,7 @@
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
 name: CMake on a single platform
 
-run-name: Buidl and Test ${{github.ref_types}} ] [ ${{github.ref_name}} ] [ ${{github.event.head_commit.message}} ] 
+run-name: Build and Test [ ${{github.ref_types}} ] [ ${{github.ref_name}} ] [ ${{github.event.head_commit.message}} ] 
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
         mkdir build
         cd build
         cmake .. 
-        cmake--build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+        cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: Test
       working-directory: ${{github.workspace}}/build
