@@ -2,7 +2,7 @@
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
 name: CMake on a single platform
 
-run-name: Build and Test [ ${{github.run_id}} ] [ ${{github.ref_name}} ] [ ${{github.event.head_commit.message}} ] 
+run-name: Build and Test [ ${{github.run_attempt}} ] [ ${{github.ref_name}} ] [ ${{github.event.head_commit.message}} ] 
 
 on:
   push:
