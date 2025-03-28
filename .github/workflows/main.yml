@@ -1,0 +1,8 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  test_job:
+    name: check the node
+    runs-on: sslab-kuase
+    run: cat /etc/issue && uname -a
