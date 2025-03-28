@@ -3,6 +3,10 @@ on:
 
 jobs:
   test_job:
-    name: check the node
+    name: Node Information
     runs-on: sslab-kuase
-    run: cat /etc/issue && uname -a
+    steps:
+      - name: check the node version
+        run: cat /etc/issue && uname -a
+      - name: check the node spec
+        run: lscpu ; lsmem
