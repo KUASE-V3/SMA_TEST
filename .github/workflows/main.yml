@@ -1,3 +1,6 @@
+name: Test Workflows
+run-name: I want to know this node's specification
+
 on:
   workflow_dispatch:
 
