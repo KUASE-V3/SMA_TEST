@@ -46,7 +46,7 @@ jobs:
 
 # https://github.com/marketplace/actions/discord-message-notify
     - name: send custom message
-        uses: appleboy/discord-action@v1.2.0
-        with:
-          webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
-          message: The ${{ github.event_name }} event triggered first step.
+      uses: appleboy/discord-action@v1.2.0
+      with:
+        webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
+        message: The ${{ github.event_name }} event triggered first step.
