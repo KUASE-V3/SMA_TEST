@@ -24,6 +24,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Run Discord Webhook
+      uses: johnnyhuy/actions-discord-git-webhook@main
+      with:
+        webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
+        
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
@@ -43,15 +48,3 @@ jobs:
       # Execute tests defined by the CMake configuration.
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
-
-# # https://github.com/marketplace/actions/discord-message-notify
-#   discordNotification:
-#     runs-on: self-hosted
-
-#     steps:
-#       - uses: actions/checkout@master
-#       - name: send custom message
-#         uses: appleboy/discord-action@v1.2.0
-#         with:
-#           webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
-#           message: The ${{ github.event_name }} event triggered first step.
