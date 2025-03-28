@@ -45,11 +45,12 @@ jobs:
       run: ctest -C ${{env.BUILD_TYPE}}
 
 # https://github.com/marketplace/actions/discord-message-notify
-  notify:
+  discordNotification:
     runs-on: self-hosted
+
     steps:
-      - name: send custom message
-        uses: appleboy/discord-action@v1.2.0
-        with:
-          webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
-          message: The ${{ github.event_name }} event triggered first step.
+    - name: Discord Github Notification
+      uses: Aleph-Kim/discord-github-notification@v1.2.1
+      with:
+        discord-webhook-url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
+        custom: true # 필수 X
