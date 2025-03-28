@@ -53,4 +53,4 @@ jobs:
       uses: Aleph-Kim/discord-github-notification@v1.2.1
       with:
         discord-webhook-url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
-        custom: true # 필수 X
+        # custom: true # 필수 X
