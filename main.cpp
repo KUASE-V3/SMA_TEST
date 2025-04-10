@@ -1,11 +1,10 @@
-#include <iostream>
+#include <stdio.h>
+#include "add.hpp"
+#include "sub.hpp"
 
-int main(int argc, char *argv[]){
-
-  std::cout << "hello world!" << std::endl;
-
-  int a = 0;
-
-std::cout << "hello world!" << std::endl;
-  return 0;
+int main() {
+    int a = 5, b = 7;
+    printf("Sum: %d\n", add(a, b));
+    printf("Sub: %d\n", sub(a, b));
+    return 0;
 }
