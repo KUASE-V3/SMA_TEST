@@ -1,0 +1,32 @@
+name: Build the project
+
+run-name: Check "#${{github.run_number}}" [ ${{github.run_attempt}} ] [ ${{github.event.head_commit.message}} ] 
+
+on:
+  push:
+    branches-ignore: "master"
+
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run Discord Webhook
+      uses: johnnyhuy/actions-discord-git-webhook@main
+      with:
+        webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
+        
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build # -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: |
+        cd build
+        cmake .. 
+        cmake --build ${{github.workspace}}/build  # --config ${{env.BUILD_TYPE}}
+        ls -alh
