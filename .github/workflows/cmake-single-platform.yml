@@ -4,7 +4,7 @@ name: CMake on a single platform
 
 # run-name: Check [ ${{github.ref_name}} ] [ ${{github.event.head_commit.message}} ] 
 
-run-name: Check #${{github.run_number}} [ ${{github.run_attempt}} ] [ ${{github.event.head_commit.message}} ] 
+run-name: Check '#'${{github.run_number}} [ ${{github.run_attempt}} ] [ ${{github.event.head_commit.message}} ] 
 
 
 on:
