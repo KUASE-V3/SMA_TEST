@@ -6,9 +6,9 @@ run-name: Build and Test [ ${{github.run_attempt}} ] [ ${{github.ref_name}} ] [ 
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "ksj_patch" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "ksj_patch" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
