@@ -1,24 +1,23 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: CMake on a single platform
+name: Build and Run unit test
 
 # run-name: Check [ ${{github.ref_name}} ] [ ${{github.event.head_commit.message}} ] 
 
 run-name: Check "#${{github.run_number}}" [ ${{github.run_attempt}} ] [ ${{github.event.head_commit.message}} ] 
 
-
 on:
   push:
     branches: [ "ksj_test" ]
   pull_request:
-    branches: [ "ksj_test" ]
+    branches: [ "master", "main" ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
 
 jobs:
-  build:
+  build_and_run_unit_test:
     # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
     # You can convert this to a matrix build if you need cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
@@ -45,22 +44,28 @@ jobs:
         cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
         pwd
         ls
+
+    - name: run unit test
+      working-directory: ${{github.workspace}}/build
+      # Execute tests defined by the CMake configuration.
+      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+      run: ctest -C ${{env.BUILD_TYPE}}
     
-  test:
-    runs-on: self-hosted
+  #test:
+  #  runs-on: self-hosted
 
-    steps:
-    - uses: actions/checkout@v4
+  #  steps:
+  #  - uses: actions/checkout@v4
 
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main
-      with:
-        webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
+  #  - name: Run Discord Webhook
+  #    uses: johnnyhuy/actions-discord-git-webhook@main
+  #    with:
+  #      webhook_url: ${{ secrets.DISCORD_GITHUB_ACTION_CHANNEL_WEBHOOK }}
         
-    - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: cmake --version
+  #  - name: Configure CMake
+  #    # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+  #    # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+  #    run: cmake --version
       
     - name: Test
       working-directory: ${{github.workspace}}/build
